@@ -1,34 +1,34 @@
-defmodule OneSignal do
+defmodule ExSignal do
   @moduledoc """
   Wrapper for the OneSignal REST API.
 
   ## Installation
 
-  1. Add one_signal to your list of dependencies in mix.exs:
+  1. Add ex_signal to your list of dependencies in mix.exs:
 
   ```
   def deps do
-    [{:one_signal, "~> 0.1.0"}]
+    [{:ex_signal, "~> 0.1.0"}]
   end
   ```
 
   2. Add this to your config.exs:
 
   ```
-  config :one_signal,
+  config :ex_signal,
     app_id: "your app id",
     api_key: "your api key"
   ```
 
-  To make testing easier, you can also provide your own OneSignal.Client implementation:
+  To make testing easier, you can also provide your own `ExSignal.Client` implementation:
 
   ```
   # test.exs
-  config :one_signal, client: ClientMock
+  config :ex_signal, client: ClientMock
   ```
   """
 
-  alias OneSignal.{
+  alias ExSignal.{
     Client,
     Request,
     Response,
@@ -57,6 +57,6 @@ defmodule OneSignal do
   defp handle_response({:ok, %Response{status: status, body: body}}), do: {:error, %{status: status, message: body}}
   defp handle_response({:error, _} = error), do: error
 
-  def config(key), do: Application.get_env(:one_signal, key)
-  def config(key, default), do: Application.get_env(:one_signal, key, default)
+  def config(key), do: Application.get_env(:ex_signal, key)
+  def config(key, default), do: Application.get_env(:ex_signal, key, default)
 end

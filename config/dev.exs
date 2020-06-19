@@ -1,5 +1,5 @@
 import Mix.Config
 
-config :one_signal,
+config :ex_signal,
   app_id: "",
   api_key: ""

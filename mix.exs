@@ -1,9 +1,9 @@
-defmodule OneSignal.MixProject do
+defmodule ExSignal.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :one_signal,
+      app: :ex_signal,
       version: "0.1.0",
       elixir: "~> 1.10",
       start_permanent: Mix.env() == :prod,

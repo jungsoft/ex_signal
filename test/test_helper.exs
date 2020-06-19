@@ -1,2 +1,2 @@
 ExUnit.start()
-Hammox.defmock(ClientMock, for: OneSignal.Client)
+Hammox.defmock(ClientMock, for: ExSignal.Client)

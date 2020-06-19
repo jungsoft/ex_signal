@@ -1,8 +1,8 @@
-defmodule OneSignalTest do
+defmodule ExSignalTest do
   use ExUnit.Case
   import Hammox
 
-  alias OneSignal.{
+  alias ExSignal.{
     Request,
     Response,
   }
@@ -18,7 +18,7 @@ defmodule OneSignalTest do
         message: body_response,
         status: 400
       }}
-      assert expected_response == OneSignal.create_notifications([], %{en: "test"})
+      assert expected_response == ExSignal.create_notifications([], %{en: "test"})
     end
 
     test "returns body when request is successful" do
@@ -29,7 +29,7 @@ defmodule OneSignalTest do
       }
       mock_client(200, body_response)
 
-      assert {:ok, body_response} == OneSignal.create_notifications(["55f563c7-3cd9-4f4a-8b28-e234a00b497c"], %{en: "test"})
+      assert {:ok, body_response} == ExSignal.create_notifications(["55f563c7-3cd9-4f4a-8b28-e234a00b497c"], %{en: "test"})
     end
 
     defp mock_client(status, body) do

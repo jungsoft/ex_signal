@@ -1,4 +1,4 @@
 import Mix.Config
 
-config :one_signal,
+config :ex_signal,
   client: ClientMock

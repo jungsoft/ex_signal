@@ -1,4 +1,4 @@
-defmodule OneSignal.Request do
+defmodule ExSignal.Request do
   @moduledoc """
   Represents an API request.
   """

@@ -1,4 +1,4 @@
-defmodule OneSignal.Response do
+defmodule ExSignal.Response do
   @moduledoc """
   Represents an API response.
   """

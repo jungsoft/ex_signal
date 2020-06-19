@@ -1,9 +1,9 @@
-defmodule OneSignal.Client.Tesla do
+defmodule ExSignal.Client.Tesla do
   @moduledoc false
 
-  @behaviour OneSignal.Client
+  @behaviour ExSignal.Client
 
-  alias OneSignal.{
+  alias ExSignal.{
     Request,
     Response,
   }
@@ -13,9 +13,9 @@ defmodule OneSignal.Client.Tesla do
     timeout = Keyword.get(opts, :timeout, 30_000)
 
     middleware = [
-      {Tesla.Middleware.BaseUrl, OneSignal.config(:api_url, "https://onesignal.com/api/v1")},
+      {Tesla.Middleware.BaseUrl, ExSignal.config(:api_url, "https://onesignal.com/api/v1")},
       Tesla.Middleware.JSON,
-      {Tesla.Middleware.Headers, [{"Authorization", "Basic #{OneSignal.config(:api_key)}"}]},
+      {Tesla.Middleware.Headers, [{"Authorization", "Basic #{ExSignal.config(:api_key)}"}]},
     ]
     adapter = {Tesla.Adapter.Hackney, [recv_timeout: timeout]}
 
