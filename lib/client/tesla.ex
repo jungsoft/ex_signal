@@ -13,8 +13,9 @@ defmodule OneSignal.Client.Tesla do
     timeout = Keyword.get(opts, :timeout, 30_000)
 
     middleware = [
-      {Tesla.Middleware.BaseUrl, config(:api_url)},
+      {Tesla.Middleware.BaseUrl, config(:api_url, "https://onesignal.com/api/v1")},
       Tesla.Middleware.JSON,
+      {Tesla.Middleware.Headers, [{"Authorization", "Basic #{config(:api_key)}"}]},
     ]
     adapter = {Tesla.Adapter.Hackney, [recv_timeout: timeout]}
 
@@ -41,4 +42,5 @@ defmodule OneSignal.Client.Tesla do
   defp cast_response({:error, error}), do: {:error, error}
 
   defp config(key), do: Application.get_env(:one_signal, key)
+  defp config(key, default), do: Application.get_env(:one_signal, key, default)
 end
