@@ -20,12 +20,15 @@ defmodule OneSignal.Client do
   @type opts :: Keyword.t()
   @type instance_url :: map() | String.t()
 
-  @callback build_client :: t()
+  @callback build_client(opts) :: t()
   @callback request(t(), Request.t()) :: {:ok, Response.t()} | {:error, any()}
 
   defp adapter, do: Application.get_env(:one_signal, :client) || Tesla
 
-  def build_client, do: adapter().build_client()
+  def build_client(opts \\ []), do: adapter().build_client(opts)
 
+  @doc """
+  Sends a request to OneSignal
+  """
   def request(client, request), do: adapter().request(client, request)
 end
