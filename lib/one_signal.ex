@@ -9,14 +9,14 @@ defmodule OneSignal do
     Response,
   }
 
-  defdelegate build_client, to: Client
+  defdelegate build_client(opts \\ []), to: Client
 
   @doc """
   Sends notifications to your users.
 
   https://documentation.onesignal.com/reference/create-notification#create-notification
   """
-  def create_notification(client, player_ids, contents) do
+  def create_notifications(player_ids, contents, client \\ build_client()) do
     body = %{
       app_id: config(:app_id),
       include_player_ids: player_ids,
