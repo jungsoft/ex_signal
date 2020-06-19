@@ -27,6 +27,8 @@ defmodule OneSignal.MixProject do
       {:jason, ">= 1.0.0"},
       # Testing
       {:hammox, "~> 0.2", only: :test},
+      # Docs
+      {:ex_doc, "~> 0.22", only: :dev, runtime: false},
     ]
   end
 end

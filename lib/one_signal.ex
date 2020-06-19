@@ -1,6 +1,31 @@
 defmodule OneSignal do
   @moduledoc """
   Wrapper for the OneSignal REST API.
+
+  ## Installation
+
+  1. Add one_signal to your list of dependencies in mix.exs:
+
+  ```
+  def deps do
+    [{:one_signal, "~> 0.1.0"}]
+  end
+  ```
+
+  2. Add this to your config.exs:
+
+  ```
+  config :one_signal,
+    app_id: "your app id",
+    api_key: "your api key"
+  ```
+
+  To make testing easier, you can also provide your own OneSignal.Client implementation:
+
+  ```
+  # test.exs
+  config :one_signal, client: ClientMock
+  ```
   """
 
   alias OneSignal.{
