@@ -1,6 +1,8 @@
 # ExSignal
 
-Wrapper for the [OneSignal API](https://documentation.onesignal.com/reference).
+Elixir wrapper for the [OneSignal API](https://documentation.onesignal.com/reference).
+
+Documentation can be found at [https://hexdocs.pm/ex_signal](https://hexdocs.pm/ex_signal).
 
 ## Installation
 
