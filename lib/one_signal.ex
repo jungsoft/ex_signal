@@ -1,18 +1,37 @@
 defmodule OneSignal do
   @moduledoc """
-  Documentation for `OneSignal`.
+  Wrapper for the OneSignal REST API.
   """
+
+  alias OneSignal.{
+    Client,
+    Request,
+    Response,
+  }
+
+  defdelegate build_client, to: Client
 
   @doc """
-  Hello world.
+  Sends notifications to your users.
 
-  ## Examples
-
-      iex> OneSignal.hello()
-      :world
-
+  https://documentation.onesignal.com/reference/create-notification#create-notification
   """
-  def hello do
-    :world
+  def create_notification(client, player_ids, contents) do
+    body = %{
+      app_id: config(:app_id),
+      include_player_ids: player_ids,
+      contents: contents,
+    }
+
+    client
+    |> Client.request(%Request{method: :post, url: "/notifications", body: body})
+    |> handle_response()
   end
+
+  defp handle_response({:ok, %Response{status: 200, body: body}}), do: {:ok, body}
+  defp handle_response({:ok, %Response{status: status, body: body}}), do: {:error, %{status: status, message: body}}
+  defp handle_response({:error, _} = error), do: error
+
+  def config(key), do: Application.get_env(:one_signal, key)
+  def config(key, default), do: Application.get_env(:one_signal, key, default)
 end
