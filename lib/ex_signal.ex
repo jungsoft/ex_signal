@@ -41,12 +41,8 @@ defmodule ExSignal do
 
   https://documentation.onesignal.com/reference/create-notification#create-notification
   """
-  def create_notifications(player_ids, contents, client \\ build_client()) do
-    body = %{
-      app_id: config(:app_id),
-      include_player_ids: player_ids,
-      contents: contents,
-    }
+  def create_notifications(params, client \\ build_client()) do
+    body = Map.merge(%{app_id: config(:app_id)}, params)
 
     client
     |> Client.request(%Request{method: :post, url: "/notifications", body: body})
