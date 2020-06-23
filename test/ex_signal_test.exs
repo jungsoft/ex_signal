@@ -8,6 +8,8 @@ defmodule ExSignalTest do
   }
 
   describe "create_notifications/3" do
+    @params %{content: %{en: "test"}}
+
     test "returns an error request is not successful" do
       body_response = %{
         "errors" => ["You must include which players, segments, or tags you wish to send this notification to."]
@@ -18,7 +20,7 @@ defmodule ExSignalTest do
         message: body_response,
         status: 400
       }}
-      assert expected_response == ExSignal.create_notifications([], %{en: "test"})
+      assert expected_response == ExSignal.create_notifications(@params)
     end
 
     test "returns body when request is successful" do
@@ -29,7 +31,10 @@ defmodule ExSignalTest do
       }
       mock_client(200, body_response)
 
-      assert {:ok, body_response} == ExSignal.create_notifications(["55f563c7-3cd9-4f4a-8b28-e234a00b497c"], %{en: "test"})
+      assert {:ok, body_response} ==
+        @params
+        |> Map.put(:include_player_ids, ["55f563c7-3cd9-4f4a-8b28-e234a00b497c"])
+        |> ExSignal.create_notifications()
     end
 
     defp mock_client(status, body) do
