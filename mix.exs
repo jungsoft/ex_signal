@@ -39,7 +39,7 @@ defmodule ExSignal.MixProject do
     [
       # Tesla
       {:tesla, "~> 1.3.0"},
-      {:hackney, "~> 1.15.2"},
+      {:hackney, "~> 1.16"},
       {:jason, ">= 1.0.0"},
       # Testing
       {:hammox, "~> 0.2", only: :test},
