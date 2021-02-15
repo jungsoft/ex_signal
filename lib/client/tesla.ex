@@ -11,11 +11,12 @@ defmodule ExSignal.Client.Tesla do
   @impl true
   def build_client(opts \\ []) do
     timeout = Keyword.get(opts, :timeout, 30_000)
+    api_key = Keyword.get(opts, :api_key, ExSignal.config(:api_key))
 
     middleware = [
       {Tesla.Middleware.BaseUrl, ExSignal.config(:api_url, "https://onesignal.com/api/v1")},
       Tesla.Middleware.JSON,
-      {Tesla.Middleware.Headers, [{"Authorization", "Basic #{ExSignal.config(:api_key)}"}]},
+      {Tesla.Middleware.Headers, [{"Authorization", "Basic #{api_key}"}]},
     ]
     adapter = {Tesla.Adapter.Hackney, [recv_timeout: timeout]}
 
