@@ -10,7 +10,7 @@ Documentation can be found at [https://hexdocs.pm/ex_signal](https://hexdocs.pm/
 
 ```elixir
 def deps do
-  [{:ex_signal, "~> 0.2.1"}]
+  [{:ex_signal, "~> 0.3.0"}]
 end
 ```
 
